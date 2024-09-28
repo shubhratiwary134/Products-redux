@@ -5,10 +5,18 @@ interface Product {
   id: number;
   title: string;
   description: string;
+  price: number;
+  category: string;
+}
+
+interface Category {
+  slug: string;
+  name: string;
+  url: string;
 }
 
 interface ProductState {
-  categories: string[];
+  categories: Category[];
   products: Product[];
   loading: boolean;
   error: string | null;
@@ -30,7 +38,7 @@ const initialState: ProductState = {
 export const fetchCategories = createAsyncThunk(
   "products/fetchCategories",
   async () => {
-    const response = await axios.get<string[]>(
+    const response = await axios.get<Category[]>(
       "https://dummyjson.com/products/categories"
     );
     return response.data;
@@ -42,21 +50,24 @@ export const fetchProducts = createAsyncThunk(
   async ({
     category,
     page,
-    search,
+    searchTerm,
   }: {
     category: string;
     page: number;
-    search: string;
+    searchTerm: string;
   }) => {
     let url = `https://dummyjson.com/products?limit=10&skip=${(page - 1) * 10}`;
-    if (category)
+    if (category) {
       url = `https://dummyjson.com/products/category/${category}?limit=10&skip=${
         (page - 1) * 10
       }`;
-    if (search) url += `&q=${search}`;
+    }
+    if (searchTerm) {
+      url += `&q=${searchTerm}`;
+    }
 
     const response = await axios.get<{ products: Product[] }>(url);
-    return response.data.products;
+    return response.data.products; // Return the products array from the response
   }
 );
 
@@ -91,9 +102,9 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
         if (state.page === 1) {
-          state.products = action.payload;
+          state.products = action.payload; // Replace products on first page load
         } else {
-          state.products = [...state.products, ...action.payload];
+          state.products = [...state.products, ...action.payload]; // Append products for subsequent pages
         }
       })
       .addCase(fetchProducts.rejected, (state, action) => {
@@ -102,5 +113,6 @@ const productSlice = createSlice({
       });
   },
 });
+
 export const { setCategory, setSearch, incrementPage } = productSlice.actions;
 export default productSlice.reducer;
