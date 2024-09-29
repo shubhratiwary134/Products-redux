@@ -1,50 +1,65 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React Redux Product Fetching App
 
-Currently, two official plugins are available:
+This is a React application that utilizes Redux for state management to fetch and display products from a public API. The app includes features like category filtering, infinite scrolling, and search functionality.
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    Category Selection: Users can filter products based on categories.
+    Infinite Scrolling: Automatically fetches more products as the user scrolls down.
+    Search Functionality: Users can search for products by name.
+    Responsive Design: The app is designed to be user-friendly on various screen sizes.
 
-## Expanding the ESLint configuration
+Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+    React: JavaScript library for building user interfaces.
+    Redux Toolkit: Simplifies state management in React applications.
+    Axios: Promise-based HTTP client for making requests.
+    Lodash: Utility library for JavaScript, used here for debouncing scroll events.
 
-- Configure the top-level `parserOptions` property like this:
+Installation
+Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Ensure you have the following installed:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+    Node.js (v14 or later)
+    npm (Node Package Manager)
+API Endpoints
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    Categories: GET https://dummyjson.com/products/categories
+    Products: GET https://dummyjson.com/products
+Project Structure 
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    ├── public
+    │   ├── index.html
+    │   └── ...
+    ├── src
+    │   ├── components
+    │   │   ├── Categories.tsx
+    │   │   └── Products.tsx
+    │   ├── redux
+    │   │   ├── productSlice.ts
+    │   │   └── store.ts
+    │   ├── App.tsx
+    │   ├── index.tsx
+    │   └── ...
+    ├── package.json
+    └── README.md
+
+    
+Getting Started
+
+ Clone the repository:
+
+
+    git clone https://github.com/your-username/repo-name.git
+    cd repo-name
+
+Install dependencies:
+
+    npm install
+
+Start the development server:
+
+    npm run dev
+
+Open your browser: Navigate to http://localhost:5173 to see the app in action.
