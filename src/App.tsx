@@ -4,7 +4,6 @@ import { setSearch } from "./redux/productSlice";
 import Categories from "./Components/Categories";
 import Products from "./Components/Products";
 import { RootState, AppDispatch } from "./redux/store";
-import { CiSearch } from "react-icons/ci";
 import { IoSearch } from "react-icons/io5";
 
 const App: React.FC = () => {

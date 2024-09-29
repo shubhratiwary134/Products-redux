@@ -20,20 +20,20 @@ const Categories: React.FC = () => {
   if (loading) return <p>Loading categories...</p>;
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 p-4 mx-20  bg-white shadow-2xl rounded-lg ">
+    <div className="flex flex-wrap justify-center gap-10 p-4 mx-20 bg-white shadow-2xl rounded-lg ">
       <button onClick={() => handleCategorySelect("")}>All Categories</button>
       {categories.length > 0 ? (
         categories.map((category) => (
           <button
-            key={category.slug} // Use the slug as a unique key
-            onClick={() => handleCategorySelect(category.slug)} // Use slug to select category
+            key={category.slug}
+            onClick={() => handleCategorySelect(category.slug)}
             className={
               category.slug === selectedCategory
-                ? "text-blue-800"
-                : "hover:text-blue-800"
+                ? "text-green-800"
+                : "hover:text-green-800"
             }
           >
-            {category.name} {/* Display the category name */}
+            {category.name}
           </button>
         ))
       ) : (

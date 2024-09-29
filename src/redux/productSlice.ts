@@ -19,6 +19,7 @@ interface ProductState {
   categories: Category[];
   products: Product[];
   loading: boolean;
+  totalProducts: number;
   error: string | null;
   searchTerm: string;
   selectedCategory: string;
@@ -28,6 +29,7 @@ interface ProductState {
 const initialState: ProductState = {
   categories: [],
   products: [],
+  totalProducts: 0,
   loading: false,
   error: null,
   searchTerm: "",
@@ -67,9 +69,14 @@ export const fetchProducts = createAsyncThunk(
       url =
         BaseUrl + `/search?q=${searchTerm}&limit=10&skip=${(page - 1) * 10}`;
     }
-
-    const response = await axios.get<{ products: Product[] }>(url);
-    return response.data.products; // Return the products array from the response
+    const response = await axios.get<{ products: Product[]; total: number }>(
+      url
+    );
+    const responseObject = {
+      products: response.data.products,
+      total: response.data.total,
+    };
+    return responseObject;
   }
 );
 
@@ -80,10 +87,12 @@ const productSlice = createSlice({
     setCategory: (state, action: PayloadAction<string>) => {
       state.selectedCategory = action.payload;
       state.page = 1;
+      state.products = [];
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
       state.page = 1;
+      state.products = [];
     },
     incrementPage: (state) => {
       state.page += 1;
@@ -98,15 +107,20 @@ const productSlice = createSlice({
         state.loading = false;
         state.categories = action.payload;
       })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "Something went wrong";
+      })
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
+        state.totalProducts = action.payload.total;
         if (state.page === 1) {
-          state.products = action.payload; // Replace products on first page load
+          state.products = action.payload.products;
         } else {
-          state.products = [...state.products, ...action.payload]; // Append products for subsequent pages
+          state.products = [...state.products, ...action.payload.products];
         }
       })
       .addCase(fetchProducts.rejected, (state, action) => {
