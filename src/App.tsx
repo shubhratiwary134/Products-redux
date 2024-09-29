@@ -24,7 +24,7 @@ const App: React.FC = () => {
     dispatch(setSearch(query));
 
     const params = new URLSearchParams(window.location.search);
-    params.set("search", query);
+    params.set("q", query);
     window.history.replaceState(
       {},
       "",

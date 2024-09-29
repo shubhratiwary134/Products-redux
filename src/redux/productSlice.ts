@@ -56,14 +56,16 @@ export const fetchProducts = createAsyncThunk(
     page: number;
     searchTerm: string;
   }) => {
-    let url = `https://dummyjson.com/products?limit=10&skip=${(page - 1) * 10}`;
+    const BaseUrl = `https://dummyjson.com/products`;
+    let url = BaseUrl + `?limit=10&skip=${(page - 1) * 10}`;
     if (category) {
       url = `https://dummyjson.com/products/category/${category}?limit=10&skip=${
         (page - 1) * 10
       }`;
     }
     if (searchTerm) {
-      url += `&q=${searchTerm}`;
+      url =
+        BaseUrl + `/search?q=${searchTerm}&limit=10&skip=${(page - 1) * 10}`;
     }
 
     const response = await axios.get<{ products: Product[] }>(url);
