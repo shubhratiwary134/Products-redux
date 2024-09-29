@@ -27,7 +27,11 @@ const Categories: React.FC = () => {
           <button
             key={category.slug} // Use the slug as a unique key
             onClick={() => handleCategorySelect(category.slug)} // Use slug to select category
-            className={category.slug === selectedCategory ? "selected" : ""}
+            className={
+              category.slug === selectedCategory
+                ? "text-blue-800"
+                : "hover:text-blue-800"
+            }
           >
             {category.name} {/* Display the category name */}
           </button>

@@ -4,6 +4,8 @@ import { setSearch } from "./redux/productSlice";
 import Categories from "./Components/Categories";
 import Products from "./Components/Products";
 import { RootState, AppDispatch } from "./redux/store";
+import { CiSearch } from "react-icons/ci";
+import { IoSearch } from "react-icons/io5";
 
 const App: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -32,13 +34,17 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <h1>Product Store</h1>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        placeholder="Search products..."
-      />
+      <div className="border-2 m-10 w-1/2 p-2 flex justify-between items-center">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          placeholder="Search products..."
+          className="w-full focus:outline-none"
+        />
+        <IoSearch />
+      </div>
+
       <Categories />
       <Products />
     </div>
