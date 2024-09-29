@@ -29,19 +29,19 @@ API Endpoints
     Products: GET https://dummyjson.com/products
 Project Structure 
 
-   ├── public
-│   ├── index.html
-│   └── ...
-├── src
-│   ├── components
-│   │   ├── Categories.tsx
-│   │   └── Products.tsx
-│   ├── redux
-│   │   ├── productSlice.ts
-│   │   └── store.ts
-│   ├── App.tsx
-│   ├── index.tsx
-│   └── ...
-├── package.json
-└── README.md
+    ├── public
+    │   ├── index.html
+    │   └── ...
+    ├── src
+    │   ├── components
+    │   │   ├── Categories.tsx
+    │   │   └── Products.tsx
+    │   ├── redux
+    │   │   ├── productSlice.ts
+    │   │   └── store.ts
+    │   ├── App.tsx
+    │   ├── index.tsx
+    │   └── ...
+    ├── package.json
+    └── README.md
 
