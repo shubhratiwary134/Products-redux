@@ -20,7 +20,7 @@ const Categories: React.FC = () => {
   if (loading) return <p>Loading categories...</p>;
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 p-4 bg-gray-100 rounded-lg shadow-md">
+    <div className="flex flex-wrap justify-center gap-10 p-4 mx-20  bg-white shadow-2xl rounded-lg ">
       <button onClick={() => handleCategorySelect("")}>All Categories</button>
       {categories.length > 0 ? (
         categories.map((category) => (
