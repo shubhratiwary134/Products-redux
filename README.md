@@ -20,3 +20,6 @@ Prerequisites
 Ensure you have the following installed:
     Node.js (v14 or later)
     npm (Node Package Manager)
+API Endpoints
+    Categories: GET https://dummyjson.com/products/categories
+    Products: GET https://dummyjson.com/products
