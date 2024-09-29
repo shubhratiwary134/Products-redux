@@ -45,3 +45,21 @@ Project Structure
     ├── package.json
     └── README.md
 
+    
+Getting Started
+
+ Clone the repository:
+
+
+    git clone https://github.com/your-username/repo-name.git
+    cd repo-name
+
+Install dependencies:
+
+    npm install
+
+Start the development server:
+
+    npm run dev
+
+Open your browser: Navigate to http://localhost:5173 to see the app in action.
