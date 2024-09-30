@@ -1,6 +1,8 @@
 
 React Redux Product Fetching App
 
+![Screenshot](src/assets/SSForProject.png)
+
 This is a React application that utilizes Redux for state management to fetch and display products from a public API. The app includes features like category filtering, infinite scrolling, and search functionality.
 Features
 
